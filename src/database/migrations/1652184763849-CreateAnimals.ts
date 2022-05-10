@@ -17,10 +17,6 @@ export class animals1652184763849 implements MigrationInterface {
                         type:"uuid",
                     },
                     {
-                        name: "owner_name",
-                        type: "varchar",
-                    },   
-                    {
                         name: "animal_name",
                         type: "varchar",
                     },   

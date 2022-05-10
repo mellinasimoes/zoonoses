@@ -26,7 +26,7 @@ export async function ensureAuthenticated(
 
 try{
   const {sub: user_id}=verify(
-    token,                                //vamos receber o refresh_token
+    token,                                //vamos receber o token
     auth.secret_token,
     ) as Ipayload;
 

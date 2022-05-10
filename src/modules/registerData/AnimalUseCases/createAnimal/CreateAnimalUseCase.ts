@@ -4,7 +4,6 @@ import { Animal } from "../../entities/Animal";
 
 interface IRequest {
   id?:string;
-  owner_name: string;
   animal_name: string;
   gender:string;
   owner_id:string;
@@ -23,7 +22,6 @@ class CreateAnimalUseCase{
   
   async execute ({
     owner_id,
-    owner_name,
     animal_name,
     gender,
     species,
@@ -36,7 +34,6 @@ class CreateAnimalUseCase{
 
     const animal =  await this.animalRepository.create({
       owner_id,
-      owner_name,
       animal_name,
       gender,
       species,

@@ -36,7 +36,7 @@ describe ("Create Owner Controller", () => {
     console.log(responseToken.body);
     
 
-    const {refresh_token} = responseToken.body;
+    const {token} = responseToken.body;
     
     const response = await request(app)
     .post("/owner")
@@ -50,7 +50,7 @@ describe ("Create Owner Controller", () => {
       phone_number: "(18)997586235",
     })
     .set({
-      Authorization: `Bearer ${refresh_token}`,
+      Authorization: `Bearer ${token}`,
     });
 
     expect(response.status).toBe(201);
@@ -62,7 +62,7 @@ describe ("Create Owner Controller", () => {
       password:"user",
     });
 
-    const {refresh_token} = responseToken.body;
+    const {token} = responseToken.body;
     
     const response = await request(app)
     .post("/owner")
@@ -76,10 +76,10 @@ describe ("Create Owner Controller", () => {
       phone_number: "(18)997586235",
     })
     .set({
-      Authorization:`Bearer ${refresh_token}`,
+      Authorization:`Bearer ${token}`,
     });
     
-    console.log(refresh_token);
+    console.log(token);
     
     expect(response.status).toBe(400);
   });
@@ -90,7 +90,7 @@ describe ("Create Owner Controller", () => {
       password:"user",
     });
 
-    const {refresh_token} = responseToken.body;
+    const {token} = responseToken.body;
     
     const response = await request(app)
     .post("/owner")
@@ -104,10 +104,10 @@ describe ("Create Owner Controller", () => {
       phone_number: "(18)997586235",
     })
     .set({
-      Authorization:`Bearer ${refresh_token}`,
+      Authorization:`Bearer ${token}`,
     });
     
-    console.log(refresh_token);
+    console.log(token);
     
     expect(response.status).toBe(400);
   });

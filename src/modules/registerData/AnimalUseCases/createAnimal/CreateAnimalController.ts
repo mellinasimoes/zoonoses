@@ -8,7 +8,6 @@ class CreateAnimalController{
   async handle (request:Request, response:Response): Promise<Response>{
     const {
       owner_id,
-      owner_name,
       animal_name,
       gender,
       species,
@@ -23,7 +22,6 @@ class CreateAnimalController{
     
     const animalCreated = await createAnimalUseCase.execute({ 
       owner_id,
-      owner_name,
       animal_name,
       gender,
       species,

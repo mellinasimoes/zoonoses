@@ -9,9 +9,6 @@ class Animal{
   id?: string;
 
   @Column()
-  owner_name: string | undefined;
-
-  @Column()
   animal_name: string | undefined;
 
   @Column()

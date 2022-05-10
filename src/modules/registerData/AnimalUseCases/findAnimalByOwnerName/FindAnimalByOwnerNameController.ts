@@ -6,11 +6,11 @@ import { FindAnimalByOwnerNameUseCase } from './FindAnimalByOwnerNameUseCase';
 class FindAnimalByOwnerNameController{
 
   async handle(request:Request,response:Response): Promise<Response>{
-    const {owner_name}=request.headers;
+    const {name}=request.headers;
 
     const listAnimalByOwnerNameUseCase = container.resolve(FindAnimalByOwnerNameUseCase);
 
-    const animalByOwnerName = await listAnimalByOwnerNameUseCase.execute({owner_name});
+    const animalByOwnerName = await listAnimalByOwnerNameUseCase.execute({name});
 
     return response.json(animalByOwnerName);  
   }

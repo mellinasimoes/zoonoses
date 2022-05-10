@@ -12,7 +12,6 @@ class AnimalRepository implements IAnimalRepository {
 
   async create({ 
     owner_id,
-    owner_name,
     animal_name,
     gender,
     species,
@@ -24,7 +23,6 @@ class AnimalRepository implements IAnimalRepository {
   }: IcreateAnimalDTO): Promise<Animal> {
     const animal = this.repository.create({ 
     owner_id,
-    owner_name,
     animal_name,
     gender,
     species,
@@ -70,8 +68,8 @@ class AnimalRepository implements IAnimalRepository {
 
   }
 
-  async findAnimalByOwnerName(owner_name:string): Promise<Animal[] | undefined> {
-    const animal = await this.repository.find({owner_name});
+  async findAnimalByOwnerName(name:string): Promise<Animal[] | undefined> {
+    const animal = await this.repository.find({name});
     
     return animal;
   }

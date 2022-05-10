@@ -7,8 +7,8 @@ class AnimalRepositoryInMemory implements IAnimalRepository{
 
   animals:Animal[]=[];
 
-  async findAnimalByOwnerName(owner_name: string): Promise<Animal[] | undefined> {
-    const animal = this.animals.filter((animal) => animal.owner_name === owner_name);
+  async findAnimalByOwnerName(name: string): Promise<Animal[] | undefined> {
+    const animal = this.animals.filter((animal) => animal.name === name);
     return animal;
   }
 
@@ -29,7 +29,6 @@ class AnimalRepositoryInMemory implements IAnimalRepository{
 
   create({ 
     owner_id,
-    owner_name,
     animal_name,
     gender,
     species,
@@ -43,7 +42,6 @@ class AnimalRepositoryInMemory implements IAnimalRepository{
 
     Object.assign(animal, {
       owner_id,
-      owner_name,
       animal_name,
       gender,
       species,

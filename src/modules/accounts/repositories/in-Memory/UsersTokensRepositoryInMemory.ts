@@ -7,14 +7,10 @@ class UsersTokensRepositoryInMemory implements IUsersTokensRepository {
   
   async create({ 
     user_id, 
-    refresh_token, 
-    expires_date 
   }: ICreateUserTokenDTO): Promise<UserTokens> {
       const userToken = new UserTokens();
 
       Object.assign(userToken, {
-        expires_date,
-        refresh_token,
         user_id,
       });
 
@@ -23,12 +19,11 @@ class UsersTokensRepositoryInMemory implements IUsersTokensRepository {
       return userToken;
   }
 
-  async findByUserIdAndRefreshToken(
+  async findByUserId(
     user_id: string, 
-    refresh_token: string
     ): Promise<UserTokens> {
       const userToken = this.usersTokens.find(
-        (ut) => ut.user_id === user_id && ut.refresh_token && refresh_token      
+        (ut) => ut.user_id === user_id    
       );
 
       return userToken;
@@ -37,13 +32,7 @@ class UsersTokensRepositoryInMemory implements IUsersTokensRepository {
   async deleteById(id: string): Promise<void> {
     const userToken = this.usersTokens.find((ut) => ut.id === id);
     this.usersTokens.splice(this.usersTokens.indexOf(userToken));
-
-  }
-  async findByRefreshToken(refresh_token: string): Promise<UserTokens> {
-    const userToken = this.usersTokens.find(
-      (ut) => ut.refresh_token === refresh_token);
-    return userToken;
-  }
+  }  
 }
 
 export { UsersTokensRepositoryInMemory }
