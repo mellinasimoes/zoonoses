@@ -1,19 +1,17 @@
-import {Request,Response} from 'express';
-import {container} from "tsyringe"
-import { ListOwnerByCPFUseCase } from './ListOwnerBynameUseCase';
+import { Request, Response } from "express";
+import { container } from "tsyringe";
+import { ListOwnerByCPFUseCase } from "./ListOwnerBynameUseCase";
 
-class ListOwnerByCPFController{
-
-
-  async handle(request:Request,response:Response): Promise<Response>{
-    const {cpf}=request.headers;
+class ListOwnerByCPFController {
+  async handle(request: Request, response: Response): Promise<Response> {
+    const { cpf } = request.headers;
 
     const listOwnerByCPFUseCase = container.resolve(ListOwnerByCPFUseCase);
 
-    const ownerByCPF = await listOwnerByCPFUseCase.execute({cpf});
+    const ownerByCPF = await listOwnerByCPFUseCase.execute({ cpf });
 
-    return response.json(ownerByCPF);  
+    return response.json(ownerByCPF);
   }
 }
 
-export {ListOwnerByCPFController}
+export { ListOwnerByCPFController };

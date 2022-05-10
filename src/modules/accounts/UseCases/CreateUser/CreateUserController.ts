@@ -1,12 +1,12 @@
-import {Request,Response} from "express"
+import { Request, Response } from "express";
 import { container } from "tsyringe";
-import {CreateUserUseCase} from "./CreateUserUseCase"
+import { CreateUserUseCase } from "./CreateUserUseCase";
 
-class CreateUserController{
-  async handle(request:Request,response:Response): Promise<Response>{
-    const { name,login,password}=request.body;
+class CreateUserController {
+  async handle(request: Request, response: Response): Promise<Response> {
+    const { name, login, password } = request.body;
 
-    const createUserUseCase= container.resolve(CreateUserUseCase);
+    const createUserUseCase = container.resolve(CreateUserUseCase);
 
     await createUserUseCase.execute({
       name,
@@ -18,4 +18,4 @@ class CreateUserController{
   }
 }
 
-export {CreateUserController};
+export { CreateUserController };

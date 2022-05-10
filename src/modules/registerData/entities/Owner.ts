@@ -8,7 +8,7 @@ class Owner {
 
   @Column()
   name: string | undefined;
-  
+
   @Column()
   cpf: string | undefined;
 
@@ -32,7 +32,7 @@ class Owner {
 
   constructor(id?: string) {
     if (!this.id) {
-      this.id = uuidV4();    
+      this.id = uuidV4();
     } else {
       this.id = id;
     }

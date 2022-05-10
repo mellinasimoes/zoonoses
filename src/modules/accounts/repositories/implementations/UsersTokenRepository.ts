@@ -6,24 +6,22 @@ import { IUsersTokensRepository } from "./IUsersTokensRepository";
 class UsersTokensRepository implements IUsersTokensRepository {
   private repository: Repository<UserTokens>;
 
-  constructor(){
-    this.repository = getRepository(UserTokens)
+  constructor() {
+    this.repository = getRepository(UserTokens);
   }
- 
-  async create({ user_id}: ICreateUserTokenDTO): Promise<UserTokens> {
-    const userToken = this.repository.create({ 
-      user_id
-    })
 
-    await this.repository.save(userToken);
-    return userToken
-
-  }
-  async findByUserId(user_id: string): Promise<UserTokens> {
-    const usersTokens = await this.repository.findOne({
+  async create({ user_id }: ICreateUserTokenDTO): Promise<UserTokens> {
+    const userToken = this.repository.create({
       user_id,
     });
-    return usersTokens;
+
+    await this.repository.save(userToken);
+    return userToken;
+  }
+  async findByUserId(user_id: string): Promise<UserTokens> {
+    return await this.repository.findOne({
+      user_id,
+    });
   }
 
   async deleteById(id: string): Promise<void> {
@@ -32,4 +30,3 @@ class UsersTokensRepository implements IUsersTokensRepository {
 }
 
 export { UsersTokensRepository };
-

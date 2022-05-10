@@ -1,33 +1,26 @@
 import { IAnimalRepository, IcreateAnimalDTO } from "../../IAnimalRepository";
 import { Animal } from "src/modules/registerData/entities/Animal";
 
-
-
-class AnimalRepositoryInMemory implements IAnimalRepository{
-
-  animals:Animal[]=[];
+class AnimalRepositoryInMemory implements IAnimalRepository {
+  animals: Animal[] = [];
 
   async findAnimalByOwnerName(name: string): Promise<Animal[] | undefined> {
-    const animal = this.animals.filter((animal) => animal.name === name);
-    return animal;
+    return this.animals.filter((animal) => animal.name === name);
   }
 
   async listAnimalsBetweenBirthYear(initial_year: string, final_year: string): Promise<Animal[] | null> {
-    const animal = this.animals;
-    return animal;
+    return this.animals;
   }
 
-  async findAnimalByOwnerId(owner_id: string): Promise<Animal[]| undefined> {
-    const animal = this.animals.filter((animal) => animal.owner_id === owner_id);
-    return animal;
+  async findAnimalByOwnerId(owner_id: string): Promise<Animal[] | undefined> {
+    return this.animals.filter((animal) => animal.owner_id === owner_id);
   }
 
   async listAllAnimalByName(): Promise<Animal[] | null> {
-    const animal = this.animals;
-    return animal;
-}
+    return this.animals;
+  }
 
-  create({ 
+  create({
     owner_id,
     animal_name,
     gender,
@@ -56,9 +49,6 @@ class AnimalRepositoryInMemory implements IAnimalRepository{
 
     return animal;
   }
-}  
+}
 
-export { AnimalRepositoryInMemory }
-
-
-  
+export { AnimalRepositoryInMemory };

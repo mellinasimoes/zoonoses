@@ -1,26 +1,27 @@
-import {IAnimalRepository} from "../../repositories/IAnimalRepository"
+import { IAnimalRepository } from "../../repositories/IAnimalRepository";
 import { injectable, inject } from "tsyringe";
 import { Animal } from "../../entities/Animal";
 
 interface IRequest {
-  id?:string;
+  id?: string;
   animal_name: string;
-  gender:string;
-  owner_id:string;
-  species:string;
-  breed:string;
-  birth_month:string;
-  birth_year:string;
+  gender: string;
+  owner_id: string;
+  species: string;
+  breed: string;
+  birth_month: string;
+  birth_year: string;
   neutering: string;
   notes?: string;
 }
 @injectable()
-class CreateAnimalUseCase{
-  constructor (
+class CreateAnimalUseCase {
+  constructor(
     @inject("AnimalRepository")
-    private animalRepository: IAnimalRepository) {}
-  
-  async execute ({
+    private animalRepository: IAnimalRepository,
+  ) {}
+
+  async execute({
     owner_id,
     animal_name,
     gender,
@@ -30,9 +31,8 @@ class CreateAnimalUseCase{
     birth_year,
     neutering,
     notes,
-  }: IRequest): Promise<Animal| undefined> {    
-
-    const animal =  await this.animalRepository.create({
+  }: IRequest): Promise<Animal | undefined> {
+    return await this.animalRepository.create({
       owner_id,
       animal_name,
       gender,
@@ -43,8 +43,6 @@ class CreateAnimalUseCase{
       neutering,
       notes,
     });
-
-      return animal;
-    }
+  }
 }
-export {CreateAnimalUseCase}
+export { CreateAnimalUseCase };

@@ -1,17 +1,16 @@
-import { Request, Response } from 'express';
+import { Request, Response } from "express";
 import { container } from "tsyringe";
-import { ListAnimalsBetweenBirthYearUseCase } from './ListAnimalsBetweenBirthYearUseCase';
+import { ListAnimalsBetweenBirthYearUseCase } from "./ListAnimalsBetweenBirthYearUseCase";
 
-class ListAnimalsBetweenBirthYearController{
+class ListAnimalsBetweenBirthYearController {
+  async handle(request: Request, response: Response): Promise<Response> {
+    const { initial_year, final_year } = request.body;
 
-  async handle(request:Request,response:Response): Promise<Response>{
-    const {initial_year, final_year}=request.body
- 
     const listAnimalsBetweenBirthYearUseCase = container.resolve(ListAnimalsBetweenBirthYearUseCase);
 
-    const all = await listAnimalsBetweenBirthYearUseCase .execute({initial_year, final_year});
+    const all = await listAnimalsBetweenBirthYearUseCase.execute({ initial_year, final_year });
 
-    return response.json(all);  
+    return response.json(all);
   }
 }
 

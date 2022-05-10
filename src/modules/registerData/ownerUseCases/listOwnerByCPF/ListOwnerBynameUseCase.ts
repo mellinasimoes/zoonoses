@@ -1,24 +1,24 @@
-import {IOwnerRepository} from '../../repositories/IOwnerRepository';
-import { injectable, inject } from 'tsyringe';
-import { AppError } from '../../../../database/errors/AppError';
-import { Owner } from '../../entities/Owner';
+import { IOwnerRepository } from "../../repositories/IOwnerRepository";
+import { injectable, inject } from "tsyringe";
+import { AppError } from "../../../../database/errors/AppError";
+import { Owner } from "../../entities/Owner";
 
 @injectable()
-class ListOwnerByCPFUseCase{
-  constructor (
-    @inject("OwnerRepository") 
-    private ownerRepository: IOwnerRepository){}
+class ListOwnerByCPFUseCase {
+  constructor(
+    @inject("OwnerRepository")
+    private ownerRepository: IOwnerRepository,
+  ) {}
 
-  async execute({cpf}): Promise <Owner|null> {
+  async execute({ cpf }): Promise<Owner | null> {
     const listOwnerByCPF = await this.ownerRepository.findByCPF(cpf);
 
-    if (!listOwnerByCPF){
-      throw new AppError ("Owner not found!")
+    if (!listOwnerByCPF) {
+      throw new AppError("Owner not found!");
     }
 
-    return listOwnerByCPF;      
-    
+    return listOwnerByCPF;
   }
 }
 
-export {ListOwnerByCPFUseCase}
+export { ListOwnerByCPFUseCase };

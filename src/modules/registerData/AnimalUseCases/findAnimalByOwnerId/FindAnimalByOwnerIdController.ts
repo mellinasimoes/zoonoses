@@ -1,18 +1,16 @@
-import { Request, Response } from 'express';
+import { Request, Response } from "express";
 import { container } from "tsyringe";
-import { FindAnimalByOwnerIdUseCase } from './FindAnimalByOwnerIdUseCase';
+import { FindAnimalByOwnerIdUseCase } from "./FindAnimalByOwnerIdUseCase";
 
-
-class FindAnimalByOwnerIdController{
-
-  async handle(request:Request,response:Response): Promise<Response>{
-    const {owner_id}=request.headers;
+class FindAnimalByOwnerIdController {
+  async handle(request: Request, response: Response): Promise<Response> {
+    const { owner_id } = request.headers;
 
     const listAnimalByOwnerIdUseCase = container.resolve(FindAnimalByOwnerIdUseCase);
 
-    const animalByOwnerId = await listAnimalByOwnerIdUseCase.execute({owner_id});
+    const animalByOwnerId = await listAnimalByOwnerIdUseCase.execute({ owner_id });
 
-    return response.json(animalByOwnerId);  
+    return response.json(animalByOwnerId);
   }
 }
 

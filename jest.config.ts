@@ -1,5 +1,5 @@
-import {pathsToModuleNameMapper} from "ts-jest/utils"
-import {compilerOptions} from "./tsconfig.json"
+import { pathsToModuleNameMapper } from "ts-jest/utils";
+import { compilerOptions } from "./tsconfig.json";
 
 export default {
   // All imported modules in your tests should be mocked automatically
@@ -32,7 +32,7 @@ export default {
   coverageProvider: "v8",
 
   // A list of reporter names that Jest uses when writing coverage reports
-  coverageReporters: ["text-summary","lcov"],
+  coverageReporters: ["text-summary", "lcov"],
 
   // An object that configures minimum threshold enforcement for coverage results
   // coverageThreshold: undefined,
@@ -121,7 +121,7 @@ export default {
   // setupFiles: [],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
-   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
 
   // The number of seconds after which a test is considered as slow and reported as such in the results.
   // slowTestThreshold: 5,

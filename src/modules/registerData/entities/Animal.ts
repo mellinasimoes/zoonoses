@@ -1,10 +1,19 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn, OneToOne, JoinTable, JoinColumn, ManyToMany, ManyToOne } from "typeorm";
-import {v4 as uuidv4} from "uuid"
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryColumn,
+  OneToOne,
+  JoinTable,
+  JoinColumn,
+  ManyToMany,
+  ManyToOne,
+} from "typeorm";
+import { v4 as uuidv4 } from "uuid";
 import { Owner } from "./Owner";
 
 @Entity("animals")
-class Animal{
-  
+class Animal {
   @PrimaryColumn()
   id?: string;
 
@@ -18,7 +27,7 @@ class Animal{
   species: string | undefined;
 
   @Column()
-  breed:string | undefined;
+  breed: string | undefined;
 
   @Column()
   birth_month: number | undefined;
@@ -27,13 +36,13 @@ class Animal{
   birth_year: number | undefined;
 
   @Column()
-  neutering:string | undefined;
+  neutering: string | undefined;
 
   @Column()
   notes?: string | undefined;
 
-  @ManyToOne(() => Owner)     //muitos animais para o mesmo tutor
-  @JoinColumn({name: "owner_id"})
+  @ManyToOne(() => Owner) //muitos animais para o mesmo tutor
+  @JoinColumn({ name: "owner_id" })
   owner: Owner;
 
   @Column()
@@ -42,13 +51,13 @@ class Animal{
   @CreateDateColumn()
   created_at: Date | undefined;
 
-  constructor (id:string){
-    if (!this.id){
-      this.id=uuidv4();
+  constructor(id: string) {
+    if (!this.id) {
+      this.id = uuidv4();
     } else {
-      this.id=id;
+      this.id = id;
     }
   }
 }
 
-export {Animal};
+export { Animal };

@@ -1,5 +1,5 @@
 interface ICreateUserTokenDTO {
-  user_id:string;
+  user_id: string;
 }
 
 export { ICreateUserTokenDTO };

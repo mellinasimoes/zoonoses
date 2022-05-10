@@ -1,15 +1,14 @@
-import { Request, Response } from 'express';
+import { Request, Response } from "express";
 import { container } from "tsyringe";
-import { ListAllAnimalAndOrderByAnimalsNameUseCase } from './ListAllAnimalAndOrderByAnimalsNameUseCase';
+import { ListAllAnimalAndOrderByAnimalsNameUseCase } from "./ListAllAnimalAndOrderByAnimalsNameUseCase";
 
-class ListAllAnimalsAndOrderByAnimalsNameController{
-  async handle(request:Request,response:Response): Promise<Response>{
- 
+class ListAllAnimalsAndOrderByAnimalsNameController {
+  async handle(request: Request, response: Response): Promise<Response> {
     const listAllAnimalsAndOrderByAnimalsNameUseCase = container.resolve(ListAllAnimalAndOrderByAnimalsNameUseCase);
 
     const all = await listAllAnimalsAndOrderByAnimalsNameUseCase.execute();
 
-    return response.json(all);  
+    return response.json(all);
   }
 }
 
