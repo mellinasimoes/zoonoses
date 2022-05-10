@@ -12,7 +12,7 @@ interface IRequest {
   city?: string;
   phone_number?: string;
 }
-//Reponsável por chamar(executar) a manipulação dos dados da entidade Repository
+
 @injectable()
 class CreateOwnerUseCase {
   constructor(

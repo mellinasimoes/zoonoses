@@ -41,7 +41,7 @@ class Animal {
   @Column()
   notes?: string | undefined;
 
-  @ManyToOne(() => Owner) //muitos animais para o mesmo tutor
+  @ManyToOne(() => Owner)
   @JoinColumn({ name: "owner_id" })
   owner: Owner;
 

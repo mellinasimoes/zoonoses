@@ -18,7 +18,7 @@ class CreateUserUseCase {
       throw new AppError("User already exists!");
     }
 
-    const passwordHash = await hash(password, 8); //Método Hash vai criptografar a senha
+    const passwordHash = await hash(password, 8);
 
     await this.usersRepository.create({
       name,

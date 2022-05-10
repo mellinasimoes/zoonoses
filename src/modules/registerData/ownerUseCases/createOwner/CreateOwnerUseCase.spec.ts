@@ -7,13 +7,11 @@ let ownerRepositoryInMemory: OwnerRepositoryInMemory;
 
 describe("Create Owner", () => {
   beforeEach(() => {
-    // Antes de algum teste vai fazer alguma coisa
     ownerRepositoryInMemory = new OwnerRepositoryInMemory();
     createOwnerUseCase = new CreateOwnerUseCase(ownerRepositoryInMemory);
   });
 
   it("Should be able to create a new owner", async () => {
-    //it é o que se espera
     const owner = await createOwnerUseCase.execute({
       name: "João da Silva",
       cpf: "254.856.854-47",
@@ -28,8 +26,6 @@ describe("Create Owner", () => {
   });
 
   it("Should not be able to create a new owner with same cpf", async () => {
-    //it é o que se espera
-
     const owner = {
       name: "João Souza",
       cpf: "254.856.854-47",
@@ -64,8 +60,6 @@ describe("Create Owner", () => {
   });
 
   it("Should not be able to create a new owner with same rg", async () => {
-    //it é o que se espera
-
     const owner = {
       name: "João Souza",
       cpf: "254.856.854-47",
@@ -99,7 +93,3 @@ describe("Create Owner", () => {
     ).rejects.toEqual(new AppError("RG already exists!"));
   });
 });
-
-//Não vamos testar acesso ao banco de dados,
-//Usaremos repositórios "fakes" chamados de repository in-memory
-//Vamos usar as interfaces
