@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --respawn src/shared/server.ts",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
+    "lint": "eslint . --ext ts",
+    "fix": "eslint . --fix",
     "test": "NODE_ENV=test jest"
   },
   "devDependencies": {
@@ -18,10 +20,14 @@
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.10.2",
     "@typescript-eslint/parser": "^5.10.2",
-    "eslint": "^6.8.0",
+    "eslint": "^7.18.0",
+    "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-sonarjs": "^0.5.0",
+    "eslint-plugin-spellcheck": "0.0.17",
     "jest": "^27.5.1",
-    "prettier": "^2.5.1",
+    "prettier": "^2.2.1",
     "supertest": "^6.2.2",
     "ts-jest": "^27.1.4",
     "ts-node-dev": "^1.1.8",
