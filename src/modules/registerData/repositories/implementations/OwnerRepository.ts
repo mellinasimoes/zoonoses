@@ -8,7 +8,6 @@ class OwnerRepository implements IOwnerRepository {
   constructor() {
     this.repository = getRepository(Owner);
   }
-
   async create({ name, cpf, rg, birth_date, address, city, phone_number }: ICreateOwnerDTO): Promise<Owner> {
     const owner = this.repository.create({
       name,
@@ -23,7 +22,7 @@ class OwnerRepository implements IOwnerRepository {
     return await this.repository.save(owner);
   }
 
-  async list(): Promise<Owner[]> {
+  async listAllOwnerByName(): Promise<Owner[]> {
     return await this.repository.find({
       order: {
         name: "ASC",

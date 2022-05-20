@@ -7,14 +7,18 @@ interface IcreateAnimalDTO {
   gender: string;
   species: string;
   breed: string;
-  birth_month: string;
-  birth_year: string;
+  weight_in_kg: string;
+  birth_day_of_month?: number;
+  birth_month?: number;
+  birth_year?: number;
   neutering: string;
+  death_day_of_month?: number;
+  death_month?: number;
+  death_year?: number;
   notes?: string;
 }
 
 interface IAnimalRepository {
-  findAnimalByOwnerName(name: string): Promise<Animal[] | undefined>;
   listAnimalsBetweenBirthYear(initial_year: string, final_year: string): Promise<Animal[] | null>;
   findAnimalByOwnerId(owner_id: string): Promise<Animal[] | undefined>;
   listAllAnimalByName(): Promise<Animal[] | null>;
@@ -24,8 +28,13 @@ interface IAnimalRepository {
     gender,
     species,
     breed,
+    weight_in_kg,
+    birth_day_of_month,
     birth_month,
     birth_year,
+    death_day_of_month,
+    death_month,
+    death_year,
     neutering,
     notes,
   }: IcreateAnimalDTO): Promise<Animal | undefined>;

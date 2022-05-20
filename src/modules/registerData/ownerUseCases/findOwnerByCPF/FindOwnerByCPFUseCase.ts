@@ -4,21 +4,21 @@ import { AppError } from "../../../../database/errors/AppError";
 import { Owner } from "../../entities/Owner";
 
 @injectable()
-class ListOwnerByCPFUseCase {
+class FindOwnerByCPFUseCase {
   constructor(
     @inject("OwnerRepository")
     private ownerRepository: IOwnerRepository,
   ) {}
 
   async execute({ cpf }): Promise<Owner | null> {
-    const listOwnerByCPF = await this.ownerRepository.findByCPF(cpf);
+    const findOwnerByCPF = await this.ownerRepository.findByCPF(cpf);
 
-    if (!listOwnerByCPF) {
+    if (!findOwnerByCPF) {
       throw new AppError("Owner not found!");
     }
 
-    return listOwnerByCPF;
+    return findOwnerByCPF;
   }
 }
 
-export { ListOwnerByCPFUseCase };
+export { FindOwnerByCPFUseCase };

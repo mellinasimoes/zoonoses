@@ -32,16 +32,36 @@ export class animals1652184763849 implements MigrationInterface {
             type: "varchar",
           },
           {
-            name: "birth_month",
+            name: "weight_in_kg",
             type: "varchar",
           },
           {
+            name: "birth_day_of_month",
+            type: "numeric",
+          },
+          {
+            name: "birth_month",
+            type: "numeric",
+          },
+          {
             name: "birth_year",
-            type: "varchar",
+            type: "numeric",
           },
           {
             name: "neutering",
             type: "varchar",
+          },
+          {
+            name: "death_day_of_month",
+            type: "numeric",
+          },
+          {
+            name: "death_month",
+            type: "numeric",
+          },
+          {
+            name: "death_year",
+            type: "numeric",
           },
           {
             name: "notes",

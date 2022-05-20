@@ -1,6 +1,8 @@
 import { Animal } from "../../entities/Animal";
 import { IAnimalRepository, IcreateAnimalDTO } from "../IAnimalRepository";
-import { Repository, getRepository, MoreThan, LessThan, Between } from "typeorm";
+import { Repository, getRepository, Between } from "typeorm";
+import { validate } from "class-validator";
+import { AppError } from "../../../../database/errors/AppError";
 
 class AnimalRepository implements IAnimalRepository {
   private repository: Repository<Animal>;
@@ -15,26 +17,44 @@ class AnimalRepository implements IAnimalRepository {
     gender,
     species,
     breed,
+    weight_in_kg,
+    birth_day_of_month,
     birth_month,
     birth_year,
+    death_day_of_month,
+    death_month,
+    death_year,
     neutering,
     notes,
   }: IcreateAnimalDTO): Promise<Animal> {
-    const animal = this.repository.create({
-      owner_id,
-      animal_name,
-      gender,
-      species,
-      breed,
-      birth_month,
-      birth_year,
-      neutering,
-      notes,
-    });
+    try {
+      const createAnimal = this.repository.create({
+        owner_id,
+        animal_name,
+        gender,
+        species,
+        breed,
+        weight_in_kg,
+        birth_day_of_month,
+        birth_month,
+        birth_year,
+        death_day_of_month,
+        death_month,
+        death_year,
+        neutering,
+        notes,
+      });
 
-    await this.repository.save(animal);
+      const errors = await validate(createAnimal);
 
-    return animal;
+      if (errors.length === 0) {
+        await this.repository.save(createAnimal);
+        return createAnimal;
+      }
+      throw new AppError(errors.map((v) => v.constraints));
+    } catch (err) {
+      return err.message;
+    }
   }
 
   async listAllAnimalByName(): Promise<Animal[]> {
@@ -47,7 +67,7 @@ class AnimalRepository implements IAnimalRepository {
   }
 
   async findAnimalByOwnerId(owner_id: string): Promise<Animal[] | undefined> {
-    return await this.repository.findOne({ relations: ["owner"], where: { owner_id: owner_id } });
+    return await this.repository.find({ relations: ["owner"], where: { owner_id: owner_id } });
   }
 
   async listAnimalsBetweenBirthYear(initial_year: string, final_year: string): Promise<Animal[] | undefined> {
@@ -58,10 +78,6 @@ class AnimalRepository implements IAnimalRepository {
         birth_year: "ASC",
       },
     });
-  }
-
-  async findAnimalByOwnerName(name: string): Promise<Animal[] | undefined> {
-    return await this.repository.find({ name });
   }
 }
 export { AnimalRepository };

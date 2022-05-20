@@ -1,24 +1,24 @@
 import { IOwnerRepository } from "../../repositories/IOwnerRepository";
+import { Owner } from "../../entities/Owner";
 import { injectable, inject } from "tsyringe";
 import { AppError } from "../../../../database/errors/AppError";
-import { Owner } from "../../entities/Owner";
 
 @injectable()
-class ListOwnerByNameUseCase {
+class FindOwnerByNameUseCase {
   constructor(
     @inject("OwnerRepository")
     private ownerRepository: IOwnerRepository,
   ) {}
 
   async execute({ name }): Promise<Owner[] | null> {
-    const listOwnerByname = await this.ownerRepository.findByName(name);
+    const findOwnerByName = await this.ownerRepository.findOwnerByName(name);
 
-    if (!listOwnerByname) {
-      throw new AppError("Owner not found!");
+    if (findOwnerByName.length === 0) {
+      throw new AppError("Owner name not found!");
     }
-
-    return listOwnerByname;
+    console.log(findOwnerByName);
+    return findOwnerByName;
   }
 }
 
-export { ListOwnerByNameUseCase };
+export { FindOwnerByNameUseCase };

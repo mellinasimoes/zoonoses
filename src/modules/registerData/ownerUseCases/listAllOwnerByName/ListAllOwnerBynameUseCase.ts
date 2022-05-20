@@ -1,17 +1,17 @@
 import { IOwnerRepository } from "../../repositories/IOwnerRepository";
-import { Owner } from "../../entities/Owner";
 import { injectable, inject } from "tsyringe";
+import { Owner } from "../../entities/Owner";
 
 @injectable()
-class ListOwnerUseCase {
+class ListAllOwnerByNameUseCase {
   constructor(
     @inject("OwnerRepository")
     private ownerRepository: IOwnerRepository,
   ) {}
 
   async execute(): Promise<Owner[] | null> {
-    return await this.ownerRepository.list();
+    return await this.ownerRepository.listAllOwnerByName();
   }
 }
 
-export { ListOwnerUseCase };
+export { ListAllOwnerByNameUseCase };

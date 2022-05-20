@@ -13,7 +13,7 @@ class FindAnimalByOwnerIdUseCase {
   async execute({ owner_id }): Promise<Animal[] | null> {
     const findAnimalByOwnerId = await this.animalRepository.findAnimalByOwnerId(owner_id);
 
-    if (!findAnimalByOwnerId) {
+    if (findAnimalByOwnerId.length === 0) {
       throw new AppError("Owner Id not found!");
     }
 
